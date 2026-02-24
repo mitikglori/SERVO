@@ -1,11 +1,32 @@
+import { useState } from 'react';
 import logo from '../assets/logo_full.png';
+import LoginPopup from './LoginPopup';
 
 const Navbar = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleLoginClick = () => {
+    if (showPopup) {
+      handleClosePopup();
+    } else {
+      setShowPopup(true);
+      setIsClosing(false);
+    }
+  };
+
+  const handleClosePopup = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 300); // Same duration as the animation
   };
 
   return (
@@ -36,9 +57,13 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link" href="#projects" onClick={() => scrollToSection('projects')}>Projects</a>
             </li>
+            <li className="nav-item">
+              <button className="btn btn-outline-light" onClick={handleLoginClick}>Login</button>
+            </li>
           </ul>
         </div>
       </div>
+      {showPopup && <LoginPopup onClose={handleClosePopup} isClosing={isClosing} />}
     </nav>
   );
 };

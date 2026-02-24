@@ -23,9 +23,23 @@ section {
 }
 
 .hero-logo {
-  height: 200px;
+  max-width: 400px;
+  width: 50%;
+  height: auto;
   margin-bottom: 2rem;
-  filter: drop-shadow(0 0 2em #ffffffaa);
+  filter: drop-shadow(0 0 8em #ffffffaa);
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    max-width: 100px;
+  }
 }
 
 /* Animations */
@@ -48,7 +62,7 @@ section {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
   100% {
     transform: translateY(0px);
@@ -68,3 +82,78 @@ section {
   opacity: 0.01;
   transform: translateY(50px);
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.login-popup {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.login-popup.slide-in {
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.login-popup.slide-out {
+  animation: slideOut 0.3s ease-in-out forwards;
+}
+
+.login-popup-content {
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.login-popup-content .form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  color: white;
+}
+
+.login-popup-content .form-control:focus {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: #80bdff;
+  color: white;
+}
+
+.login-popup-content .btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.login-popup-content .btn:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.login-popup-content .btn:active,
+.login-popup-content .btn:focus {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+
